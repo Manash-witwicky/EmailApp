@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Email } from './email.model';
 
 @Component({
   selector: 'app-root',
@@ -8,24 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
-  private _url = 'http://localhost:3000/posts';
+  private _url = 'http://localhost:3000/emails';
 
-  private posts: any = [];
+  private emails: any = [];
 
-  constructor(private _http: HttpClient) { }
+  private selectedEmail: Email;
+
+  constructor(private _http: HttpClient, private renderer: Renderer2) { }
 
   public getPost() {
-    // this._http.get(this._url)
-    //   .subscribe((post) => {
-    //     this.posts = post;
-    //     console.log(this.posts);
-    //   });
-    this.posts = this._http.get(this._url);
-    console.log(this.posts);
+    this.emails = this._http.get<Email[]>(this._url);
+    console.log(this.emails);
+  }
+
+  onSelect(email: Email, event) {
+    this.selectedEmail = email;
+    console.log(event.target);
+    // const div = this.renderer.createElement('div');
+    const text = this.renderer.createText(this.selectedEmail.body);
+    // this.renderer.appendChild(div, text);
+    this.renderer.appendChild(event.target, text);
+    console.log(this.selectedEmail);
 
   }
 
   ngOnInit() {
     this.getPost();
   }
+
+
 }
