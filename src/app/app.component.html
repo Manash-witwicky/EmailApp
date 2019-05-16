@@ -1,14 +1,15 @@
-<mat-sidenav-container class="example-container">
+<mat-sidenav-container class="container">
   <mat-sidenav mode="side" opened>
     <mat-list role="list">
       <span class="email">EMAIL</span>
-      <mat-list-item role="listitem">Inbox</mat-list-item>
+      <mat-list-item role="listitem" routerLink="/inbox">Inbox</mat-list-item>
       <mat-list-item role="listitem">Archive</mat-list-item>
-      <mat-list-item role="listitem">Sent Items</mat-list-item>
+      <mat-list-item role="listitem" routerLink="/sentitems">Sent Items</mat-list-item>
       <mat-list-item role="listitem">Starred</mat-list-item>
     </mat-list>
   </mat-sidenav>
   <mat-sidenav-content>
+    <router-outlet></router-outlet>
     <mat-accordion>
       <mat-expansion-panel *ngFor="let email of (emails | async)">
         <mat-expansion-panel-header>
