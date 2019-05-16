@@ -1,10 +1,24 @@
-<div class="email">
-  <ul>
-    <mat-list>
-      <a mat-list-item *ngFor="let email of (emails | async)" (click)="onSelect(email, $event)">{{email.subject}}</a>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav mode="side" opened>
+    <mat-list role="list">
+      <span class="email">EMAIL</span>
+      <mat-list-item role="listitem">Inbox</mat-list-item>
+      <mat-list-item role="listitem">Archive</mat-list-item>
+      <mat-list-item role="listitem">Sent Items</mat-list-item>
+      <mat-list-item role="listitem">Starred</mat-list-item>
     </mat-list>
-    <!-- <div *ngIf="selectedEmail">
-      <p>{{selectedEmail.body}}</p>
-    </div> -->
-  </ul>
-</div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let email of (emails | async)">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="email">
+            {{email.subject}}
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <p>{{email.body}}</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-sidenav-content>
+</mat-sidenav-container>
