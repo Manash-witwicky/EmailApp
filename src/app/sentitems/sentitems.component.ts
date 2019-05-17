@@ -10,6 +10,7 @@ export class SentitemsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

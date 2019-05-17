@@ -7,7 +7,8 @@ import { SentitemsComponent } from './sentitems/sentitems.component';
 
 const routes: Routes = [
   { path: 'inbox', component: InboxComponent },
-  { path: 'sentitems', component: SentitemsComponent }
+  { path: 'sentitems', component: SentitemsComponent },
+  { path: '', redirectTo: '/inbox', pathMatch: 'full' },
 ];
 
 @NgModule({

@@ -10,9 +10,8 @@ import { SentitemsComponent } from './sentitems/sentitems.component';
 @NgModule({
   declarations: [
     AppComponent,
-    InboxComponent,
     SentitemsComponent,
-
+    InboxComponent,
   ],
   imports: [
     BrowserAnimationsModule,
