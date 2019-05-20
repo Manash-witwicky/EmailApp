@@ -8,5 +8,8 @@
       </mat-checkbox>
     </mat-expansion-panel-header>
     <p>{{email.body}}</p>
+    <button>
+      <mat-icon (click)="deleteEmail(email)">delete</mat-icon>
+    </button>
   </mat-expansion-panel>
 </mat-accordion>

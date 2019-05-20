@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatButtonModule, MatCheckboxModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatSidenavModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatExpansionModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSidenavModule } from '@angular/material';
 import { MatListModule } from '@angular/material/list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +26,7 @@ import { SentitemsComponent } from './sentitems/sentitems.component';
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
+    MatIconModule,
     HttpClientModule,
     AppRoutingModule
   ],

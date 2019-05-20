@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Email } from '../email.model';
 
 @Component({
@@ -15,14 +16,23 @@ export class InboxComponent implements OnInit {
 
   private selectedEmail: Email;
 
-  constructor(private _http: HttpClient) { }
+  icon = false;
+  constructor(private _http: HttpClient, private router: Router) { }
 
   public getPost() {
     this.emails = this._http.get<Email[]>(this._url);
   }
 
-  onSelect(email: Email) {
-    this.selectedEmail = email;
+  deleteEmail(email: Email) {
+    const id = email.id;
+    this._http.delete(`http://localhost:3000/emails/${id}`)
+      .subscribe((data) => {
+        console.log('Deleted data: ' + data);
+
+      });
+    this.getPost();
+    console.log('Deleted successfully!!!');
+
   }
 
   ngOnInit() {
