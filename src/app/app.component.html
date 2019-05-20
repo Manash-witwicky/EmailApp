@@ -2,6 +2,7 @@
   <mat-sidenav mode="side" opened>
     <mat-list role="list">
       <span class="email">EMAIL</span>
+      <mat-list-item role="listitem" routerLink="/compose" routerLinkActive="active">Compose</mat-list-item>
       <mat-list-item role="listitem" routerLink="/inbox" routerLinkActive="active">Inbox</mat-list-item>
       <mat-list-item role="listitem">Archive</mat-list-item>
       <mat-list-item role="listitem" routerLink="/sentitems" routerLinkActive="active">Sent Items</mat-list-item>
@@ -11,5 +12,4 @@
   <mat-sidenav-content>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
-
 </mat-sidenav-container>

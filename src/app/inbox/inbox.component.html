@@ -1,10 +1,11 @@
 <mat-accordion>
   <mat-expansion-panel *ngFor="let email of (emails | async)">
     <mat-expansion-panel-header>
-      <mat-panel-title class="email">
-        {{email.subject}}
-      </mat-panel-title>
-
+      <mat-checkbox>
+        <mat-panel-title class="email">
+          {{email.subject}}
+        </mat-panel-title>
+      </mat-checkbox>
     </mat-expansion-panel-header>
     <p>{{email.body}}</p>
   </mat-expansion-panel>

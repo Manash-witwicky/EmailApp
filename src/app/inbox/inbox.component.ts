@@ -19,7 +19,6 @@ export class InboxComponent implements OnInit {
 
   public getPost() {
     this.emails = this._http.get<Email[]>(this._url);
-    console.log(this.emails);
   }
 
   onSelect(email: Email) {

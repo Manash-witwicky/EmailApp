@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Email } from '../email.model';
 
 @Component({
   selector: 'app-sentitems',
@@ -7,10 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SentitemsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _http: HttpClient) { }
+
+  private _url = 'http://localhost:3000/emails';
+
+  private sentItems: any = [];
+
+  public getSentMails() {
+    this._http.get<Email[]>(this._url)
+      .subscribe((data) => {
+        this.sentItems = data.filter((email) => {
+          return email.sent === true;
+        });
+      });
+  }
 
   ngOnInit() {
-
+    this.getSentMails();
   }
 
 }
