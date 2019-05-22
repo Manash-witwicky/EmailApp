@@ -4,4 +4,5 @@ export interface Email {
     email: string;
     body: string;
     sent?: boolean;
+    starred?: boolean;
 }

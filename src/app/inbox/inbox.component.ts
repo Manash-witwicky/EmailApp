@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Email } from '../email.model';
@@ -16,11 +16,34 @@ export class InboxComponent implements OnInit {
 
   private selectedEmail: Email;
 
+  private isChanged = false;
+
   icon = false;
   constructor(private _http: HttpClient, private router: Router) { }
 
   public getPost() {
     this.emails = this._http.get<Email[]>(this._url);
+  }
+
+  change(email: Email) {
+    this.isChanged = !this.isChanged;
+    const id = email.id;
+    console.log(id);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+
+    const body = JSON.stringify({
+      'starred': true
+    });
+
+    this._http.patch(`http://localhost:3000/emails/${id}`, body, httpOptions)
+      .subscribe((data) => {
+        console.log(data);
+      });
+
   }
 
   deleteEmail(email: Email) {

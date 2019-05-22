@@ -35,7 +35,6 @@ export class ComposeComponent implements OnInit {
       'body': content,
       'sent': true
     };
-    console.log('Ng Model: ' + this.email);
 
     this.subscription = this._http.post(this._url, JSON.stringify(body), httpOptions)
       .subscribe(data => console.log(data));

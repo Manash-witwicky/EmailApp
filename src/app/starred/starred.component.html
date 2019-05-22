@@ -1,0 +1,12 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let starredMail of starredMails">
+    <mat-expansion-panel-header>
+      <mat-checkbox>
+        <mat-panel-title class="email">
+          {{starredMail.subject}}
+        </mat-panel-title>
+      </mat-checkbox>
+    </mat-expansion-panel-header>
+    <p>{{starredMail.body}}</p>
+  </mat-expansion-panel>
+</mat-accordion>

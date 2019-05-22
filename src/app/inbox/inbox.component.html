@@ -11,5 +11,8 @@
     <button>
       <mat-icon (click)="deleteEmail(email)">delete</mat-icon>
     </button>
+    <button>
+      <mat-icon [class.changed]="isChanged" (click)="change(email)">star_rate</mat-icon>
+    </button>
   </mat-expansion-panel>
 </mat-accordion>
