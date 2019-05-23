@@ -5,4 +5,5 @@ export interface Email {
     body: string;
     sent?: boolean;
     starred?: boolean;
+    read?: boolean;
 }

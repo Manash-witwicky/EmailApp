@@ -18,14 +18,15 @@ export class InboxComponent implements OnInit {
 
   private isChanged = false;
 
-  icon = false;
+  private isRead = false;
+
   constructor(private _http: HttpClient, private router: Router) { }
 
   public getPost() {
     this.emails = this._http.get<Email[]>(this._url);
   }
 
-  change(email: Email) {
+  starred(email: Email) {
     this.isChanged = !this.isChanged;
     const id = email.id;
     console.log(id);
@@ -43,7 +44,6 @@ export class InboxComponent implements OnInit {
       .subscribe((data) => {
         console.log(data);
       });
-
   }
 
   deleteEmail(email: Email) {
@@ -51,11 +51,29 @@ export class InboxComponent implements OnInit {
     this._http.delete(`http://localhost:3000/emails/${id}`)
       .subscribe((data) => {
         console.log('Deleted data: ' + data);
-
       });
     this.getPost();
     console.log('Deleted successfully!!!');
+  }
 
+  markAsRead(email) {
+    this.isRead = !this.isRead;
+    const id = email.id;
+    console.log(id);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+
+    const body = JSON.stringify({
+      'read': true
+    });
+
+    this._http.patch(`http://localhost:3000/emails/${id}`, body, httpOptions)
+      .subscribe((data) => {
+        console.log(data);
+      });
   }
 
   ngOnInit() {

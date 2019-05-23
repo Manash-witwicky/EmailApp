@@ -15,3 +15,7 @@
 .changed{
     background-color: red;
 }
+
+.read{
+    background-color: yellow;
+}
