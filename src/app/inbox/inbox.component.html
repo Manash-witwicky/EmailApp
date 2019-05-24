@@ -1,6 +1,6 @@
 <mat-accordion>
   <mat-expansion-panel *ngFor="let email of (emails | async)">
-    <mat-expansion-panel-header>
+    <mat-expansion-panel-header @fade>
       <mat-checkbox>
         <mat-panel-title class="email">
           {{email.subject}}

@@ -1,12 +1,16 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { fade } from '../animation';
 import { Email } from '../email.model';
 
 @Component({
   selector: 'app-inbox',
   templateUrl: './inbox.component.html',
-  styleUrls: ['./inbox.component.css']
+  styleUrls: ['./inbox.component.css'],
+  animations: [
+    fade
+  ]
 })
 export class InboxComponent implements OnInit {
 
