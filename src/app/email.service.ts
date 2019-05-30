@@ -15,11 +15,8 @@ export class EmailService {
     return this._http.get<Email[]>(this._url);
   }
 
-  composeMail(body) {
+  addMail(body) {
     return this._http.post<Email>(this._url, body);
   }
 
-  // deleteMail(id) {
-  //   return this._http.delete(`http://localhost:3000/emails/${id}`);
-  // }
 }

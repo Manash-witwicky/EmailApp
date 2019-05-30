@@ -16,16 +16,11 @@ export class SentitemsComponent implements OnInit {
   private sentItems: any = [];
 
   public getSentMails() {
-    this._http.get<Email[]>(this._url)
-      .subscribe((data) => {
-        this.sentItems = data.filter((email) => {
-          return email.sent === true;
-        });
-      });
+
   }
 
   ngOnInit() {
-    this.getSentMails();
+    this.sentItems = this._http.get<Email[]>(this._url);
   }
 
 }

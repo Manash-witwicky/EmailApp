@@ -34,7 +34,10 @@ export class EmailState {
     @Action(FetchEmailSuccess)
     fetchEmailSuccess({ getState, setState }: StateContext<EmailModel>, { emails }: FetchEmailSuccess) {
         const state = getState();
-        setState({ ...state, emails: emails });
+        setState(
+            {
+                ...state, emails: emails
+            });
     }
 
     @Action(DeleteMail)
@@ -45,9 +48,11 @@ export class EmailState {
         });
     }
 
-    // @Action(ComposeEmail)
-    // ComposeEmail({ getState, setState }: StateContext<EmailModel>, { email }: ComposeEmail) {
-    //     const state = getState();
-    //     return this.emailService
+    // @Action(AddEmail)
+    // AddEmail({ dispatch }: StateContext<EmailModel>) {
+    //     return this.emailService.addMail().pipe(
+    //         tap((response) => dispatch(new AddEmailSuccess(response)));
+    //     )
     // }
+
 }

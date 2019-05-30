@@ -8,12 +8,18 @@ export class FetchEmailSuccess {
     constructor(public emails: Email[]) { }
 }
 
-export class ComposeEmail {
-    static readonly type = '[EMAIL] Add Email';
-    constructor(public email: Email) { }
-}
-
 export class DeleteMail {
     static readonly type = '[EMAIL] Delete Email';
     constructor(public payload: number) { }
 }
+
+export class AddEmail {
+    static readonly type = '[EMAIL] Add Email';
+}
+
+export class AddEmailSuccess {
+    static readonly type = '[EMAIL] Add Email';
+    constructor(public email: Email) { }
+}
+
+

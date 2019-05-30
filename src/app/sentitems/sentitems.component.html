@@ -1,6 +1,6 @@
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let sentItem of sentItems">
-    <mat-expansion-panel-header>
+  <mat-expansion-panel *ngFor="let sentItem of (sentItems | async)">
+    <mat-expansion-panel-header *ngIf="sentItem.sent">
       <mat-checkbox>
         <mat-panel-title class="email">
           {{sentItem.subject}}

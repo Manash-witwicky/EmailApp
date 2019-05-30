@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Email } from '../email.model';
+import { EmailService } from '../email.service';
 
 @Component({
   selector: 'app-starred',
@@ -9,23 +9,14 @@ import { Email } from '../email.model';
 })
 export class StarredComponent implements OnInit {
 
-  private _url = 'http://localhost:3000/emails';
-
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient, private emailService: EmailService) { }
 
   private starredMails: any = [];
 
-  public getStarredMails() {
-    this._http.get<Email[]>(this._url)
-      .subscribe((data) => {
-        this.starredMails = data.filter((email) => {
-          return email.starred === true;
-        });
-      });
-  }
-
   ngOnInit() {
-    this.getStarredMails();
+    this.starredMails = this.emailService.getEmail();
   }
-
 }
+
+
+

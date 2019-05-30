@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { Email } from '../email.model';
-import { ComposeEmail } from '../state/email.actions';
+
 
 @Component({
   selector: 'app-compose',
@@ -45,17 +45,17 @@ export class ComposeComponent implements OnInit {
 
   }
 
-  private composeMail(id, email, subject, body, sent) {
-    this.store.dispatch(new ComposeEmail(
-      {
-        id: this.randomIds,
-        email: email.value,
-        subject: subject.value,
-        body: body.value,
-        sent: true
-      }
-    ));
-  }
+  // private composeMail(id, email, subject, body, sent) {
+  //   this.store.dispatch(new ComposeEmail(
+  //     {
+  //       id: this.randomIds,
+  //       email: email.value,
+  //       subject: subject.value,
+  //       body: body.value,
+  //       sent: true
+  //     }
+  //   ));
+  // }
 
   ngOnInit() {
 
