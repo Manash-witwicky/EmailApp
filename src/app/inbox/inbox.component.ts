@@ -5,7 +5,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { fade } from '../animation';
 import { Email } from '../email.model';
-import { FetchEmail } from '../state/email.actions';
+import { DeleteMail, FetchEmail } from '../state/email.actions';
 import { EmailModel } from '../state/email.models';
 import { EmailState } from '../state/email.state';
 
@@ -34,10 +34,6 @@ export class InboxComponent implements OnInit {
 
   constructor(private _http: HttpClient, private router: Router, private store: Store) { }
 
-  public getPost() {
-    this.emails = this._http.get<Email[]>(this._url);
-  }
-
   starred(email: Email) {
     this.isChanged = !this.isChanged;
     const id = email.id;
@@ -58,16 +54,6 @@ export class InboxComponent implements OnInit {
       });
   }
 
-  deleteEmail(email: Email) {
-    const id = email.id;
-    this._http.delete(`http://localhost:3000/emails/${id}`)
-      .subscribe((data) => {
-        console.log('Deleted data: ' + data);
-      });
-    this.getPost();
-    console.log('Deleted successfully!!!');
-  }
-
   markAsRead(email) {
     this.isRead = !this.isRead;
     const id = email.id;
@@ -86,6 +72,10 @@ export class InboxComponent implements OnInit {
       .subscribe((data) => {
         console.log(data);
       });
+  }
+
+  deleteEmail(id) {
+    this.store.dispatch(new DeleteMail(id));
   }
 
   ngOnInit() {

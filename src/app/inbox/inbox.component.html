@@ -9,7 +9,7 @@
     </mat-expansion-panel-header>
     <p>{{email.body}}</p>
     <button>
-      <mat-icon (click)="deleteEmail(email)">delete</mat-icon>
+      <mat-icon (click)="deleteEmail(email.id)">delete</mat-icon>
     </button>
     <button>
       <mat-icon [class.changed]="isChanged" (click)="starred(email)">star_rate</mat-icon>

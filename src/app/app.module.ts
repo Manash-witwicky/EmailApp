@@ -6,6 +6,7 @@ import { MatListModule } from '@angular/material/list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 import { NgxsModule } from '@ngxs/store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +15,6 @@ import { InboxComponent } from './inbox/inbox.component';
 import { SentitemsComponent } from './sentitems/sentitems.component';
 import { StarredComponent } from './starred/starred.component';
 import { EmailState } from './state/email.state';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +41,8 @@ import { EmailState } from './state/email.state';
       EmailState
     ]),
     NgxsLoggerPluginModule.forRoot(),
-    NgxsReduxDevtoolsPluginModule.forRoot()
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsRouterPluginModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

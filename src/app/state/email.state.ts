@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 import { EmailService } from '../email.service';
-import { FetchEmail, FetchEmailSuccess } from './email.actions';
+import { DeleteMail, FetchEmail, FetchEmailSuccess } from './email.actions';
 import { EmailModel } from './email.models';
 
 
@@ -23,7 +22,7 @@ export class EmailState {
         return state.emails;
     }
 
-    constructor(private _http: HttpClient, private emailService: EmailService) { }
+    constructor(private emailService: EmailService) { }
 
     @Action(FetchEmail)
     fetch({ dispatch }: StateContext<EmailModel>) {
@@ -38,4 +37,17 @@ export class EmailState {
         setState({ ...state, emails: emails });
     }
 
+    @Action(DeleteMail)
+    deleteMail({ getState, patchState }: StateContext<EmailModel>, { payload }: DeleteMail) {
+        const state = getState();
+        patchState({
+            emails: state.emails.filter((email) => email.id !== payload)
+        });
+    }
+
+    // @Action(ComposeEmail)
+    // ComposeEmail({ getState, setState }: StateContext<EmailModel>, { email }: ComposeEmail) {
+    //     const state = getState();
+    //     return this.emailService
+    // }
 }
