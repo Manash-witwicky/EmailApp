@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Email } from '../app/state/email.models';
 
@@ -15,8 +15,45 @@ export class EmailService {
     return this._http.get<Email[]>(this._url);
   }
 
-  addMail(body) {
-    return this._http.post<Email>(this._url, body);
+  addMail(email, subject, content) {
+
+    const randomId = Math.floor((Math.random() * 1000) + 1);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+
+    const body: Email = {
+      'id': randomId,
+      'email': email,
+      'subject': subject,
+      'body': content,
+      'sent': true
+    };
+
+    return this._http.post(this._url, JSON.stringify(body), httpOptions)
+      .subscribe(data => console.log(data));
+
+    // return this._http.post<Email>(this._url, body);
   }
 
+  starredMail(email: Email) {
+    const id = email.id;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+
+    const body = JSON.stringify({
+      'starred': true
+    });
+
+    return this._http.patch(this._url + '/' + id, body, httpOptions)
+      .subscribe((data) => {
+        console.log(data);
+      });
+  }
 }
+

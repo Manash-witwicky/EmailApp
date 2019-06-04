@@ -15,3 +15,11 @@
 .point{
     cursor:pointer
 }
+
+.active{
+    font-weight: bold;
+}
+
+mat-sidenav-content{
+    padding-left: 4px;
+}
