@@ -11,3 +11,7 @@
     margin-left: 17px;
     font-weight: bold;
 }
+
+.point{
+    cursor:pointer
+}

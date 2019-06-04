@@ -35,6 +35,7 @@ import { EmailState } from './state/email.state';
     MatCheckboxModule,
     MatIconModule,
     MatToolbarModule,
+    MatButtonModule,
     HttpClientModule,
     AppRoutingModule,
     NgxsModule.forRoot([

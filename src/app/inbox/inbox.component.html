@@ -8,13 +8,13 @@
       </mat-checkbox>
     </mat-expansion-panel-header>
     <p>{{email.body}}</p>
-    <button>
+    <button mat-button>
       <mat-icon (click)="deleteEmail(email.id)">delete</mat-icon>
     </button>
-    <button>
+    <button mat-button>
       <mat-icon [class.changed]="isChanged" (click)="starred(email)">star_rate</mat-icon>
     </button>
-    <button>
+    <button mat-button>
       <mat-icon [class.read]="isRead" (click)="markAsRead()">bookmark_border</mat-icon>
     </button>
   </mat-expansion-panel>
