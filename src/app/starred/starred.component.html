@@ -1,6 +1,6 @@
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let starredMail of (starredMails|async)">
-    <mat-expansion-panel-header *ngIf="starredMail.starred" @fade>
+  <mat-expansion-panel *ngFor="let starredMail of (starredMails | async)">
+    <mat-expansion-panel-header @fade>
       <mat-checkbox>
         <mat-panel-title class="email">
           {{starredMail.subject}}

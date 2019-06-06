@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { Email } from '../app/state/email.models';
 
 @Injectable({
@@ -19,6 +20,12 @@ export class EmailService {
 
   getEmail() {
     return this._http.get<Email[]>(this._url);
+  }
+
+  getStarredMail() {
+    return this._http.get<Email[]>(this._url).pipe(
+      map(mails => mails.filter(mail => mail.starred))
+    );
   }
 
   addMail(email, subject, content) {

@@ -18,7 +18,7 @@ export class AddEmail {
 }
 
 export class AddEmailSuccess {
-    static readonly type = '[EMAIL] Add Email';
+    static readonly type = '[EMAIL] Add Email Success';
     constructor(public email: Email) { }
 }
 

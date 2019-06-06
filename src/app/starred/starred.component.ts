@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { fade } from '../animation';
 import { EmailService } from '../email.service';
@@ -13,14 +12,11 @@ import { EmailService } from '../email.service';
 })
 export class StarredComponent implements OnInit {
 
-  constructor(private _http: HttpClient, private emailService: EmailService) { }
-
   private starredMails: any = [];
 
+  constructor(private emailService: EmailService) { }
+
   ngOnInit() {
-    this.starredMails = this.emailService.getEmail();
+    this.starredMails = this.emailService.getStarredMail();
   }
 }
-
-
-
