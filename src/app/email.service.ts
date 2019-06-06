@@ -9,6 +9,12 @@ export class EmailService {
 
   private _url = 'http://localhost:3000/emails';
 
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    })
+  };
+
   constructor(private _http: HttpClient) { }
 
   getEmail() {
@@ -18,11 +24,6 @@ export class EmailService {
   addMail(email, subject, content) {
 
     const randomId = Math.floor((Math.random() * 1000) + 1);
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      })
-    };
 
     const body: Email = {
       'id': randomId,
@@ -32,25 +33,17 @@ export class EmailService {
       'sent': true
     };
 
-    return this._http.post(this._url, JSON.stringify(body), httpOptions)
+    return this._http.post(this._url, JSON.stringify(body), this.httpOptions)
       .subscribe(data => console.log(data));
-
-    // return this._http.post<Email>(this._url, body);
   }
 
   starredMail(email: Email) {
     const id = email.id;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      })
-    };
-
     const body = JSON.stringify({
       'starred': true
     });
 
-    return this._http.patch(this._url + '/' + id, body, httpOptions)
+    return this._http.patch(this._url + '/' + id, body, this.httpOptions)
       .subscribe((data) => {
         console.log(data);
       });

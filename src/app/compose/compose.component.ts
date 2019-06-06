@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { EmailService } from '../email.service';
 
@@ -14,7 +13,7 @@ export class ComposeComponent implements OnInit {
 
   storageEmail: any = '';
 
-  constructor(private _http: HttpClient, private emailService: EmailService) { }
+  constructor(private emailService: EmailService) { }
 
   public sendEmail(email, subject, content) {
     this.emailService.addMail(email, subject, content);

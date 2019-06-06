@@ -9,7 +9,6 @@ const initialState: EmailModel = {
     emails: null,
 };
 
-
 @State<EmailModel>({
     name: 'EmailState',
     defaults: initialState
