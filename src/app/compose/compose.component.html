@@ -1,12 +1,12 @@
-<div class="container" @fade>
+<div class="container">
   <mat-form-field>
-    <input matInput [value]="storageEmail" placeholder="Email" (keyup)="storage('Email', email.value)" #email>
+    <input matInput [value]="storageData" placeholder="Email" (keyup)="saveData(email.value)" #email>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Subject" (keyup)="storage('Subject', subject.value)" #subject>
+    <input matInput placeholder="Subject" #subject>
   </mat-form-field>
   <mat-form-field>
-    <textarea matInput placeholder="Content" rows="10" cols="50" (keyup)="storage('Body', body.value)" #body></textarea>
+    <textarea matInput placeholder="Content" rows="10" cols="50" #body></textarea>
   </mat-form-field>
   <div>
     <button mat-raised-button color="primary" (click)="sendEmail(email.value, subject.value, body.value)">Send</button>

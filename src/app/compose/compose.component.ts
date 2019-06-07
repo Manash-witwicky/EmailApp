@@ -11,7 +11,7 @@ export class ComposeComponent implements OnInit {
 
   email: any = '';
 
-  storageEmail: any = '';
+  storageData: any = '';
 
   constructor(private emailService: EmailService) { }
 
@@ -19,29 +19,13 @@ export class ComposeComponent implements OnInit {
     this.emailService.addMail(email, subject, content);
   }
 
-  storage(key, value) {
-    localStorage.setItem(key, JSON.stringify(value));
-  }
-
-  getStorage() {
-    this.storageEmail = JSON.parse(localStorage.getItem('Email'));
-    return this.storageEmail == null ? '' : this.storageEmail;
+  saveData(email) {
+    this.storageData = this.emailService.saveData(email);
+    console.log(this.storageData);
   }
 
   ngOnInit() {
-    this.getStorage();
+    this.storageData = this.emailService.text.email;
   }
 
 }
-
-// private composeMail(id, email, subject, body, sent) {
-  //   this.store.dispatch(new ComposeEmail(
-  //     {
-  //       id: this.randomIds,
-  //       email: email.value,
-  //       subject: subject.value,
-  //       body: body.value,
-  //       sent: true
-  //     }
-  //   ));
-  // }

@@ -10,6 +10,8 @@ export class EmailService {
 
   private _url = 'http://localhost:3000/emails';
 
+  public text: any;
+
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -22,10 +24,20 @@ export class EmailService {
     return this._http.get<Email[]>(this._url);
   }
 
+
   getStarredMail() {
     return this._http.get<Email[]>(this._url).pipe(
       map(mails => mails.filter(mail => mail.starred))
     );
+  }
+
+  saveData(email) {
+    const data = {
+      email: email,
+    };
+    this.text = Object.assign({}, data);
+    return this.text.email;
+
   }
 
   addMail(email, subject, content) {
