@@ -52,8 +52,7 @@ export class EmailService {
       'sent': true
     };
 
-    return this._http.post(this._url, JSON.stringify(body), this.httpOptions)
-      .subscribe(data => console.log(data));
+    return this._http.post(this._url, JSON.stringify(body), this.httpOptions);
   }
 
   starredMail(email: Email) {
@@ -66,6 +65,10 @@ export class EmailService {
       .subscribe((data) => {
         console.log(data);
       });
+  }
+
+  addMailState(payload: Email) {
+    return this._http.post<Email>(this._url, payload);
   }
 }
 

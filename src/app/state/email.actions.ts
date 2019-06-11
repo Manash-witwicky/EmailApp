@@ -15,11 +15,13 @@ export class DeleteMail {
 
 export class AddEmail {
     static readonly type = '[EMAIL] Add Email';
+    constructor(public email, public subject, public content) { }
 }
 
 export class AddEmailSuccess {
     static readonly type = '[EMAIL] Add Email Success';
     constructor(public email: Email) { }
 }
+
 
 

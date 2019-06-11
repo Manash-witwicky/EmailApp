@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
 import { EmailService } from '../email.service';
+import { AddEmail } from '../state/email.actions';
 
 
 @Component({
@@ -13,10 +15,11 @@ export class ComposeComponent implements OnInit {
 
   storageData: any = '';
 
-  constructor(private emailService: EmailService) { }
+  constructor(private emailService: EmailService, private _store: Store) { }
 
   public sendEmail(email, subject, content) {
-    this.emailService.addMail(email, subject, content);
+    this._store.dispatch(new AddEmail(email, subject, content));
+    // this.emailService.addMail(email, subject, content);
   }
 
   saveData(email) {

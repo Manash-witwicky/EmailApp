@@ -1,7 +1,8 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
+import { Email } from '../email.model';
 import { EmailService } from '../email.service';
-import { DeleteMail, FetchEmail, FetchEmailSuccess } from './email.actions';
+import { AddEmail, AddEmailSuccess, DeleteMail, FetchEmail, FetchEmailSuccess } from './email.actions';
 import { EmailModel } from './email.models';
 
 
@@ -47,11 +48,20 @@ export class EmailState {
         });
     }
 
-    // @Action(AddEmail)
-    // AddEmail({ dispatch }: StateContext<EmailModel>) {
-    //     return this.emailService.addMail().pipe(
-    //         tap((response) => dispatch(new AddEmailSuccess(response)));
-    //     )
-    // }
+    @Action(AddEmail)
+    addEmail({ dispatch }: StateContext<EmailModel>, { email, subject, content }: AddEmail) {
+        return this.emailService.addMail(email, subject, content).pipe(
+            tap((response: Email) => dispatch(new AddEmailSuccess(response))));
+    }
+
+    @Action(AddEmailSuccess)
+    addEmailSuccess({ getState, patchState }: StateContext<EmailModel>, { email }: AddEmailSuccess) {
+        const state = getState();
+        patchState({
+            emails: [
+                ...state.emails, email
+            ]
+        });
+    }
 
 }
